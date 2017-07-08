@@ -57,7 +57,9 @@ class PaizaHandlers(object):
         else:
             res = paiza_get_details(session_id)
             # TODO pretty output
-            self._vim.out_write(json.dumps(res) + '\n')
+            s = json.dumps(res, sort_keys=True, indent=4,
+                           separators=(',', ': '))
+            self._vim.out_write(s + '\n')
 
     def start_timer(self, session_id: str):
         expr = 'timer_start(1000, {-> execute("call _paiza_wait_loop(\'' \
